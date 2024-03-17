@@ -1,0 +1,37 @@
+﻿@model my.website.Entities.Projects;
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-action="CreateProject" asp-controller="Projects" method="post">
+    <div class="form-group">
+        <label asp-for="ProjectName"></label>
+        <input asp-for="ProjectName" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.ProjectName)</span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GithubLink"></label>
+        <input asp-for="GithubLink" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.GithubLink)</span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProjectDescription"></label>
+        <input asp-for="ProjectDescription" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.ProjectDescription)</span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Author"></label>
+        <input asp-for="Author" class="form-control" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.Author)</span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProjectDate">Project Date</label>
+        <input asp-for="ProjectDate" class="form-control" type="datetime-local" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.ProjectDate)</span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
