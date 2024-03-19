@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using my.website.Entities;
 using my.website.Services.Abstract;
+using Serilog;
 
 namespace my.website.Controllers
 {
@@ -32,6 +33,7 @@ namespace my.website.Controllers
                 string body = "Your project has been successfully created.";
 
                 await _emailService.SendMailAsync(toMail, subject, body);
+                Log.Information($" Project name : {project.ProjectName} Author: {project.Author} added.");
                 return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Index","Home"); 
