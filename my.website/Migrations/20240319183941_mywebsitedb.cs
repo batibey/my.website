@@ -18,7 +18,7 @@ namespace my.website.Migrations
                     ProjectName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GithubLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProjectDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProjectDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ProjectDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

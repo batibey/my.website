@@ -13,7 +13,7 @@ namespace my.website.Services
         {
             try
             {
-                string selfMail = "YOUR_MAIL";
+                string selfMail = "YOUR_MAIL"; // guvenligi azaltilmis email hesabi gerekli aksi halde authenticate olmaz.
                 string password = "YOUR_PASSWORD";
 
                 MailMessage newMail = new();

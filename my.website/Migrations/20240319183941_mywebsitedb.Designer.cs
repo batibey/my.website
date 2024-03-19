@@ -12,8 +12,8 @@ using my.website.Entities;
 namespace my.website.Migrations
 {
     [DbContext(typeof(MyWebsiteDbContext))]
-    [Migration("20240317110846_datetime_modified")]
-    partial class datetime_modified
+    [Migration("20240319183941_mywebsitedb")]
+    partial class mywebsitedb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
