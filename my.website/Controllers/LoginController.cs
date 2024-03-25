@@ -1,17 +1,35 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using my.website.Entities;
 
 namespace my.website.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly MyWebsiteDbContext _websiteDbContext;
+
+        public LoginController(MyWebsiteDbContext websiteDbContext)
+        {
+            _websiteDbContext = websiteDbContext;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult SignIn()
+        [HttpPost]
+        public IActionResult SignIn(string email, string password)
         {
-            return RedirectToAction("Index","Home");
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+                return RedirectToAction("Index", "Login"); 
+
+            var user = _websiteDbContext.Users.FirstOrDefault(u => u.Email == email);
+
+            if (user == null || user.Password != password)
+                return RedirectToAction("Index", "Login"); 
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
