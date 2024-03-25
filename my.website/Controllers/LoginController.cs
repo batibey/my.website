@@ -8,5 +8,10 @@ namespace my.website.Controllers
         {
             return View();
         }
+
+        public IActionResult SignIn()
+        {
+            return RedirectToAction("Index","Home");
+        }
     }
 }
