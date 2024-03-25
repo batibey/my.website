@@ -5,6 +5,7 @@ using my.website.Services.Abstract;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.UseUrls("https://localhost:7155");
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -13,6 +14,8 @@ Log.Logger = new LoggerConfiguration()
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient();
 
 builder.Services.AddDbContext<MyWebsiteDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("MsSQLConnection")));
