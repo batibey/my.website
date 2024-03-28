@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using my.website.Data;
 using my.website.Entities;
 using my.website.Services;
 using my.website.Services.Abstract;
@@ -12,8 +13,13 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
+// Identity yapılandırması
+builder.Services.AddIdentityCore<Users>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<MyWebsiteDbContext>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 builder.Services.AddHttpClient();
 
@@ -21,6 +27,8 @@ builder.Services.AddDbContext<MyWebsiteDbContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("MsSQLConnection")));
 
 builder.Services.AddSingleton<IEmailService, EmailService>();
+
+
 
 var app = builder.Build();
 
@@ -35,10 +43,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Kimlik doğrulama ara yazılımını kullanılabilir hale getirme
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=Index}/{id?}"); 
-
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 app.Run();

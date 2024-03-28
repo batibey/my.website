@@ -1,15 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using my.website.Entities;
 
-namespace my.website.Entities
+namespace my.website.Data
 {
-    public class MyWebsiteDbContext: DbContext
+    public class MyWebsiteDbContext : IdentityDbContext<Users> 
     {
-        public MyWebsiteDbContext(DbContextOptions<MyWebsiteDbContext> options) : base(options) { }  
+        public MyWebsiteDbContext(DbContextOptions<MyWebsiteDbContext> options) : base(options)
+        {
+        }
+
         public DbSet<Projects> Projects { get; set; }
-        public DbSet<Users> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Projects>().HasKey(p => p.Id);
             modelBuilder.Entity<Users>().HasKey(u => u.UserId);
         }

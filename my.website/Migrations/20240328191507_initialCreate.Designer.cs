@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using my.website.Data;
 
@@ -11,9 +12,10 @@ using my.website.Data;
 namespace my.website.Migrations
 {
     [DbContext(typeof(MyWebsiteDbContext))]
-    partial class MyWebsiteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240328191507_initialCreate")]
+    partial class initialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
